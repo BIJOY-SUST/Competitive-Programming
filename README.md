@@ -7,7 +7,8 @@ I maybe add one problems solution in different languages(C, C++, Java). From the
 
 
 
-Contact me at my mail for any problem: bsbijoy2050@gmail.com  ---------------------------------------------------------------------------------------------------------  
+Contact me at my mail for any problem: bsbijoy2050@gmail.com  
+-------------------------------------------------------------
 
 
 
