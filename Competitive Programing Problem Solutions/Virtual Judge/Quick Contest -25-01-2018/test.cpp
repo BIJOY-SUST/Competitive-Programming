@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+//#define mx             100001
+//#define mod            1000000007
+//#define pi             2*acos(0.0)
+//#define pp             pair<int,int>
+//#define ll             long long int
+//#define bug(x)         printf("X: %d\n",x)
+//#define one(n)         __builtin_popcount(n)
+//#define ull            unsigned long long int
+//#define valid(tx,ty)   tx>=0&&tx<r&&ty>=0&&ty<c
+#define mem(arr,val)   memset(arr,val,sizeof(arr))
+//const int fx[]={+0,+0,+1,-1,-1,+1,-1,+1};
+//const int fy[]={-1,+1,+0,+0,+1,+1,-1,-1};
+//const int fx[]={-2,-2,-1,-1,+1,+1,+2,+2};
+//const int fy[]={-1,+1,-2,+2,-2,+2,-1,+1};
+//int biton(int n,int pos){return n=n|(1<<pos);}
+//int bitoff(int n,int pos){return n=n&~(1<<pos);}
+//bool bitcheck(int n,int pos){return (bool)(n&(1<<pos));}
+//ll POW(ll b,ll p) {ll r=1; while(p){if(p&1)r=(r*b);b=(b*b);p>>=1;}return r;}
+//ll BigMod(ll b,ll p,ll m) {ll r=1; while(p){if(p&1)r=(r*b)%m;b=(b*b)%m;p>>=1;}return r;}
+//ll ModInverse(ll n,ll m) {return BigMod(n,m-2,m);}
+using namespace std;
+int cnt[2000],mark[2000],mm[2000];
+int main(){
+//    freopen("Input.txt","r",stdin); freopen("Output.txt","w",stdout);
+//    ios_base::sync_with_stdio(false); cin.tie(NULL);
+    int n;
+    while(scanf("%d",&n)==1){
+    mem(cnt,0);
+    mem(mark,0);
+    for(int i=1;i<=2*n;i++){
+        int h; scanf("%d",&h);
+        cnt[h]++;
+        mm[i]=h;
+    }
+    int c=1,m=0,m2=0;
+    bool vis[2000];
+    mem(vis,false);
+    for(int i=1;i<=2*n;i++){
+        if(cnt[mm[i]]>1){
+            for(int j=i;j<=2*n;j++){
+                if(mm[i]==mm[j]&&mark[j]!=1&&mark[j]!=2){
+                    if(c%2) mark[j]=1;
+                    else mark[j]=2;
+                    c++;
+                    if(vis[mm[j]]==false){
+                        m++;
+                        m2++;
+                        vis[mm[j]]=true;
+                    }
+                }
+            }
+        }
+    }
+    for(int i=1;i<=2*n;i++){
+        if(cnt[mm[i]]==1){
+            if(c%2){
+                mark[i]=1;
+                m++;
+            }
+            else{
+                mark[i]=2;
+                m2++;
+            }
+            c++;
+        }
+    }
+    printf("%d\n",m*m2);
+    for(int i=1;i<=2*n;i++){
+        printf("%d ",mark[i]);
+    }
+    printf("\n");
+    }
+    return 0;
+}
+/*
+
+*/

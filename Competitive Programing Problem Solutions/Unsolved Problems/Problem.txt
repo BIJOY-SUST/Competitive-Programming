@@ -1,0 +1,12 @@
+uva-452
+light oj-1076
+uva-10452
+fahim vai recursion 20 no prblem,,,,.....
+safayet vai er stack er implementation  ta bujhi nai..............................
+safayet vai er slidinig range minimum query............all
+1112 - Curious Robin Hood 
+MULTQ3 - Multiples of 3_spoj
+uva_11235
+uva-11331-problem a buji nai-hints:knap+bipartate;
+Timus 1017: Staircases===google ????? ?? ???? ???
+Timus 1501: Sense of Beauty;solve:https://github.com/marioyc/Online-Judge-Solutions/blob/master/Timus%20Online%20Judge/1501%20-%20Sense%20of%20Beauty.cpp
