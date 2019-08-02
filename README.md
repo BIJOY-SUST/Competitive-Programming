@@ -1,4 +1,4 @@
-# ACM---ICPC
+# ACM-ICPC
 
 Here, I've added some competitive programming problems solution in C, C++ and in python languages. You can use these  Online judge solutions in your coding time. Here, I have added the solutions to the problems in topics wise.
 
@@ -8,7 +8,7 @@ And also here I added some of the main topics with discussion, which are very im
 
 I maybe add one problems solution in different languages(C, C++, Java). From them, C++/cpp is the best solution, Promise.    
 
-![alt Topics](https://ibb.co/4ppdczs)
+![alt text](https://ibb.co/4ppdczs)
 
 Contact me at my mail for any problem: bsbijoy2050@gmail.com  
 -------------------------------------------------------------
