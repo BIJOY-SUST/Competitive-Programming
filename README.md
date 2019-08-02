@@ -8,11 +8,12 @@ And also here I added some of the main topics with discussion, which are very im
 
 I maybe add one problems solution in different languages(C, C++, Java). From them, C++/cpp is the best solution, Promise.    
 
-![alt text](https://ibb.co/4ppdczs)
-
 Contact me at my mail for any problem: bsbijoy2050@gmail.com  
 -------------------------------------------------------------
 
+Main topic of the competitive programing field:
+
+![download](https://user-images.githubusercontent.com/41442625/62351672-03e26a00-b528-11e9-82e2-3f969ee3dc88.png)
 
 
 ..Adding Here more online Judge Solution...Just wait and star the repository.....
