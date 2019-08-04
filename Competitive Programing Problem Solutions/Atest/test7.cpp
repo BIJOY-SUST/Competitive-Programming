@@ -93,32 +93,41 @@ auto TimeEnd = chrono::steady_clock::now();
 #undef BIJOY
 #undef OImode
 /************************Code start here*******************/
-
+ll n,k,haha;
+vector<ll>arr;
+ll lol(ll mid){
+    ll d = mid - arr[haha];
+    ll h = k-d;
+    ll oo  = haha;
+    for(oo=oo+1;oo<=n;oo++){
+        if(arr[oo]>=mid){
+            continue;
+        }
+        else{
+            ll gdp = mid - arr[oo];
+            if(gdp>h) {
+                return 0;
+            }
+            mid = arr[oo]+gdp;
+            h-=gdp;
+        }
+    }
+    return 1;
+}
 
 void Solve(){
-
-ll n,I;
-	cin>>n>>I;
-	ll k=0;ll K=0;
-	ll a[n];
-	for(int i=0;i<n;i++){
-		cin>>a[i];
-	}
-	ll maxK = I*8;
-	ll maxk = maxK/n;
-	set<ll> s;
-	for(int i=0;i<n;i++){
-		s.insert(a[i]);
-	}
-	ll currk=2*n*s.size();
-	ll count=0;
-	ll len = s.size();
-	while(currk<=maxk){
-		currk=2*(n)*(len-1);
-		count++;
-		len--;
-	}
-	cout<<count<<endl;
+    ll L,R,mid;
+    arr.push_back(0);
+    sfll2(n,k);
+    for(int i=1;i<=n;i++){ll no;sfll1(no);arr.push_back(no);}
+    sort(all(arr)); haha = (n+1)/2LL;
+    for(  L = arr[haha], R = arr[haha]+k;L+1!=R;){
+         mid = (L+R)>>1;
+        if(lol(mid)==0) R=mid;
+        else L=mid;
+    }
+    if(lol(R)==0) cout<<L<<nl;
+    else cout<<R<<nl;
 
 
 

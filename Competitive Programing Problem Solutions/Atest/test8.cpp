@@ -1,45 +1,69 @@
+#include <bits/stdc++.h>
+using namespace std;
 
-#include<iostream.h>
-#include<graphics.h>
-#include<conio.h>
-#include<math.h>
-void main()
-{
-    clrscr();
-    int x1,y1,x2,y2,x,y,dy,dx,b;
-    float m;
-    cout<<“\n\t\t**Line drawing using Direct OR Polynomial method**\n”;
-    cout<<“\nenter the x coordinates(x1,x2)\n”;
-    cin>>x1>>x2;
-    cout<<“\nenter the y coordinates(y1,y2)\n”;
-    cin>>y1>>y2;
-    dx=x2-x1;
-    dy=y2-y1;
-    m=dy/dx;
-    b=y1-(m*x1);
-    x=x1;
-    y=y1;
-    int gd=DETECT,gm;
-    initgraph(&gd,&gm,””);
-    setbkcolor(WHITE);
-    if(m<1)
-        while(x<=x2)
-        {
+#define rep(i, a, b) for(lli i  = (lli)(a); i < (lli)(b);i++)
+#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define fastio ios_base::sync_with_stdio(0); cin.tie(0)
+#define pb push_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define sz(v) (v).size()
+#define all(v) (v).begin(), (v).end()
+#define trace(x) cout << #x << ": " << x << endl;
 
-            putpixel(x,int(y+0.5),8);
-            x++;
-            y=(m*x)+b;
+typedef long long int lli;
+typedef pair<lli, lli> ii;
+typedef pair<ii, lli> iii;
+typedef vector<lli> vi;
+typedef vector<ii> vii;
+typedef double C;
+const int N=2*1e5+9;
+
+vector<lli> v;
+
+
+bool check(lli mid,lli medio,lli n,lli k){
+
+    lli queda=k-(mid-v[medio]);
+    lli ant=mid;
+    lli ind=medio+1;
+
+    while(ind<=n){
+        if(v[ind]<ant){
+            lli need=(ant)-v[ind];
+            if(need>queda) return false;
+            ant=v[ind]+need;
+            queda-=need;
         }
-    else
-    {
-        while(y<=y2)
-        {
-            putpixel(int(x+0.5),y,8);
-            y++;
-            x=(y-b)/m;
-        }
+        ind++;
     }
-    setcolor(8);
-    outtextxy(100,60,”Line using polynomial method”);
-    getch();
+    return true;
+}
+
+
+int main(){
+    // fastio;
+    v.pb(0);
+    lli n,k; cin>>n>>k;
+    rep(i,1,n+1){
+        lli num; cin>>num;
+        v.pb(num);
+    }
+    sort(all(v));
+    lli medio=(n+1)/2;
+    lli low=v[medio],high=v[medio]+k;
+
+
+    while((low+1)!=high){
+        lli mid=(low+high)/2;
+        if(check(mid,medio,n,k)) low=mid;
+        else high=mid;
+    }
+    trace(high);
+    trace(low);
+    if(check(high,medio,n,k)) cout<<high;
+    else cout<<low;
+
+    return 0;
 }
