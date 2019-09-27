@@ -88,10 +88,7 @@ const long long Mod = 1000000007LL, INF = 1e9, LINF = 1e18;
 auto TimeStart = chrono::steady_clock::now();
 auto TimeEnd = chrono::steady_clock::now();
 #define BIJOY 2016331012
-#define OImode 227420978
-
 #undef BIJOY
-#undef OImode
 /************************Code start here*******************/
 
 
@@ -106,10 +103,6 @@ void Solve(){
 
 
 int32_t main() {
-    #ifdef OImode
-        freopen("input.txt","r",stdin);
-        freopen("output.txt","w",stdout);
-    #endif
     #ifdef BIJOY
         TimeStart = chrono::steady_clock::now();
     #endif

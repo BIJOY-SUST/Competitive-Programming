@@ -91,61 +91,175 @@ auto TimeEnd = chrono::steady_clock::now();
 #undef BIJOY
 /************************Code start here*******************/
 
+string pattern;
+int des[101];
+int head[101];
+int cnt;
 
-void Solve(){
-    string s;
+struct data{
+    int to;
+    char w;
+    int next;
+}edge[101];
+
+void addEdge(int u, int v, char w){
+    edge[cnt].to = v;
+    edge[cnt].w = w;
+    edge[cnt].next = head[u];
+    head[u] = cnt ++;
+}
+
+
+int dfs( int u, int par, int cnt, int step) {
+    if (cnt > pattern.size()) return 0;
+     if (cnt == pattern.size()) {
+         cout << "last character" << nl;
+     }
+    int ret = 0;
+    for(int i=head[u];i !=-1;i=edge[i].next){
+        int v = edge[i].to;
+        pair<int,char> it;
+        it.first = v;
+        it.second = edge[i].w;
+        if (it.second == '$') {
+            // hi(2);
+            // cout << u << " " << it.first << " " << par << " " << cnt << nl;
+                // for (char ch = 'a' ; ch <= 'z'; ch++) {
+                //     if (pattern[cnt] == ch) {
+                //         if (pattern.size() == cnt + 1 and des[it.first] == 1) {
+                //             return 1;
+                //         }
+                //         ret |= dfs(it.first, u, cnt + 1, 1);
+                //     }
+                // }
+            // else if (it.first != par ) {
+                if (pattern.size() == cnt and des[it.first] == 1) return 1;
+                ret |= dfs(it.first, u, cnt, 1);
+            //     if (pattern.size() <= cnt) continue;
+
+            //     for (char ch = 'a' ; ch <= 'z'; ch++) {
+            //         if (pattern[cnt] == ch) {
+            //             if (pattern.size() == cnt + 1 and des[it.first] == 1) {
+            //                 return 1;
+            //             }
+            //         }
+
+            //         ret |= dfs(it.first, u, cnt + 1, 1);
+            //     }
+            // }
+
+        }
+
+        else if (pattern.size() > cnt  and pattern[cnt] == it.second) {
+            // hi(4);
+            // cout << u << " " << it.first << " " << par << " " << cnt << nl;
+
+            if (pattern.size() == cnt + 1 and des[it.first] == 1) {
+                return 1;
+            }
+            ret |= dfs(it.first, u, cnt + 1, 2);
+        }
+    }
+    return ret;
+}
+
+void Solve() {
+
+
     int n;
-    cin>>n>>s;
-    std::vector<int> v(10,0);
-    for(int i=0;i<n;i++){
-        if(s[i]=='L'){
-            for(int i=0;i<=9;i++){
-                if(v[i]==0){
-                    v[i]=1;
-                    break;
-                }
+    cin >> n;
+    int e;
+    cin >> e;
+    for (int i = 0; i < e; i++) {
+        int u, v;
+        string s;
+        cin >> u >> s >> v;
+
+        if (u == v and s=="eps") {
+            continue;
+        }
+        else {
+            char ch ;
+            if (s == "eps") {
+                ch = '$';
             }
-        }
-        else if(s[i]=='R'){
-            for(int i=9;i>=0;i--){
-                if(v[i]==0){
-                    v[i]=1;
-                    break;
-                }
+            else {
+                ch = s[0];
             }
+            addEdge(u, v, ch);
+            // edge[u].push_back(make_pair(v, ch));
         }
-        else{
-            int d = s[i] - '0';
-            v[d] = 0;
-        }
-        // for(auto it:v){
-        //     cout<<it;
-        // }
-        // cout<<nl;
+
     }
 
-    for(auto it:v){
-        cout<<it;
-    }
-    cout<<nl;
+    // for(int i=0;i<n;i++){
+    //     for(auto it:edge[i]){
+    //         cout<<i<<" "<<it.first<<" "<<it.second<<nl;
+    //     }
+    // }
 
+    int d;
+    cin >> d;
+    for (int i = 0; i < d; i++) {
+        int x;
+        cin >> x;
+        des[x] = 1;
+    }
+    // cout<<des[0]<<nl;
+    int query;
+    cin>>query;
+    getchar();
+    while (query--) {
+        getline(cin,pattern);
+        if(pattern.size()==0){
+            // cout<<query<<" "<<des[0]<<nl;
+            if(des[0]==1){
+                cout<<"accept"<<endl;
+                continue;
+            }
+        }
+
+        // hi(1);
+        int ans = dfs(0, -1, 0, -1);
+
+        if (ans == 1) {
+            cout << "accept" << nl;
+        }
+        else {
+            cout << "reject" << nl;
+        }
+    }
 
 
     return;
 }
-
+/*
+3
+3
+0 a 1
+1 eps 0
+1 eps 2
+1
+2
+5
+a
+a
+b
+aaaaa
+aaaaab
+*/
 
 int32_t main() {
-    #ifdef BIJOY
-        TimeStart = chrono::steady_clock::now();
-    #endif
+#ifdef BIJOY
+    TimeStart = chrono::steady_clock::now();
+#endif
 
     Solve();
 
-    #ifdef BIJOY
-        TimeEnd = chrono::steady_clock::now();
-        auto ElapsedTime = TimeEnd - TimeStart;
-        cout << "\n\nTime elapsed: " << chrono::duration<double>(ElapsedTime).count() << " seconds.\n";
-    #endif
+#ifdef BIJOY
+    TimeEnd = chrono::steady_clock::now();
+    auto ElapsedTime = TimeEnd - TimeStart;
+    cout << "\n\nTime elapsed: " << chrono::duration<double>(ElapsedTime).count() << " seconds.\n";
+#endif
     return 0;
 }
